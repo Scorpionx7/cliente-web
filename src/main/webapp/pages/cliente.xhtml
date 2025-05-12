@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Cadastro de Cliente</title>
+</h:head>
+<h:body>
+    <h:form enctype="multipart/form-data">
+
+        <p:panel header="Cadastrar Cliente">
+            <p:messages showDetail="true" closable="true"/>
+
+            <p:outputLabel for="nome" value="Nome:" />
+            <p:inputText id="nome" value="#{clienteBean.nome}" required="true"/>
+
+            <p:outputLabel for="email" value="E-mail:" />
+            <p:inputText id="email" value="#{clienteBean.email}" required="true"/>
+
+            <p:outputLabel for="logotipo" value="Logotipo:" />
+            <p:fileUpload id="logotipo"
+                          value="#{clienteBean.logotipo}"
+                          mode="simple"
+                          required="true"/>
+
+            <p:outputLabel for="novoEndereco" value="Novo Logradouro:" />
+            <p:inputText id="novoEndereco" value="#{clienteBean.novoEndereco}"/>
+            <p:commandButton value="Adicionar" action="#{clienteBean.adicionarLogradouro}" update="@form"/>
+
+            <p:dataList value="#{clienteBean.logradouros}" var="end" emptyMessage="Nenhum endereço adicionado.">
+                #{end}
+            </p:dataList>
+
+            <p:commandButton value="Salvar Cliente" action="#{clienteBean.salvar}" ajax="false"/>
+        </p:panel>
+
+    </h:form>
+</h:body>
+</html>

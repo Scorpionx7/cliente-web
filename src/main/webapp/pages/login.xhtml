@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Login</title>
+</h:head>
+<h:body>
+    <h:form id="formLogin">
+
+        <p:panel header="Login">
+            <p:messages id="msgs" showDetail="true" closable="true"/>
+
+            <p:inputText id="username" value="#{loginBean.username}" placeholder="Usuário" required="true"/>
+            <br/><br/>
+            <p:password id="password" value="#{loginBean.password}" placeholder="Senha" required="true"/>
+
+            <br/><br/>
+            <p:commandButton value="Entrar" action="#{loginBean.login}" update="formLogin"/>
+        </p:panel>
+
+    </h:form>
+</h:body>
+</html>

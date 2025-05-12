@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui" xmlns:f="">
+<h:head>
+    <title>Clientes Cadastrados</title>
+</h:head>
+<h:body>
+    <h:form>
+
+        <p:panel header="Lista de Clientes">
+            <p:commandButton value="Atualizar Lista" action="#{listagemBean.carregarClientes}" update="tabelaClientes"/>
+
+            <p:dataTable id="tabelaClientes" value="#{listagemBean.clientes}" var="cliente" rowKey="#{cliente.id}"
+                         paginator="true" rows="5" editable="true" editMode="row" responsiveLayout="scroll">
+
+                <p:ajax event="rowEdit" listener="#{listagemBean.atualizarCliente}" update="@form"/>
+                <p:ajax event="rowEditCancel" listener="#{listagemBean.cancelarEdicao}" />
+
+                <p:column headerText="Nome" editor="true">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{cliente.nome}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{cliente.nome}" /></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Email" editor="true">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{cliente.email}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{cliente.email}" /></f:facet>
+                    </p:cellEditor>
+                </p:column>
+
+                <p:column headerText="Qtd. Logradouros">
+                    <h:outputText value="#{cliente.logradouros.size()}" />
+                </p:column>
+
+                <p:column headerText="Ações">
+                    <p:rowEditor />
+                    <p:commandButton icon="pi pi-trash"
+                                     action="#{listagemBean.removerCliente(cliente.id)}"
+                                     update="tabelaClientes"
+                                     title="Excluir"
+                                     styleClass="ui-button-danger" />
+                    <p:commandButton icon="pi pi-image"
+                                     action="#{listagemBean.visualizarLogotipo(cliente.id)}"
+                                     ajax="false" title="Ver Logotipo" />
+                </p:column>
+            </p:dataTable>
+
+
+        </p:panel>
+        </h:form>
+
+    </h:body>
+</html>

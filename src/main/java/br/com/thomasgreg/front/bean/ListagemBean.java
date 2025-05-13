@@ -82,9 +82,4 @@ public class ListagemBean implements Serializable {
             e.printStackTrace();
         }
     }
-
-    public void cancelarEdicao(org.primefaces.event.RowEditEvent<ClienteDTO> event) {
-        // opcional: mensagens JSF
-    }
-
 }

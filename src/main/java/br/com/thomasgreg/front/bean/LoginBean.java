@@ -17,7 +17,7 @@ public class LoginBean {
 
     public void login() {
         try {
-            URL url = new URL("http://localhost:8080/auth/login"); // ajuste a porta se necessário
+            URL url = new URL("http://localhost:8080/auth/login");
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");

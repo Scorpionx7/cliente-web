@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui" xmlns:f="">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
 <h:head>
     <title>Clientes Cadastrados</title>
+    <h:outputStylesheet name="styles.css"/>
 </h:head>
 <h:body>
     <h:form>
 
-        <p:panel header="Lista de Clientes">
-            <p:commandButton value="Atualizar Lista" action="#{listagemBean.carregarClientes}" update="tabelaClientes"/>
+        <!-- Mensagens de feedback -->
+        <p:growl id="messages" showDetail="true" life="5000"/>
+
+        <p:panel header="Lista de Clientes" style="padding:20px;">
+            <p:commandButton value="Atualizar Lista"
+                             action="#{listagemBean.carregarClientes}"
+                             update="tabelaClientes messages"
+                             icon="pi pi-refresh"
+                             style="margin-bottom:10px;"/>
 
             <p:dataTable id="tabelaClientes" value="#{listagemBean.clientes}" var="cliente" rowKey="#{cliente.id}"
-                         paginator="true" rows="5" editable="true" editMode="row" responsiveLayout="scroll">
+                         paginator="true" rows="5" editable="true" editMode="row" responsiveLayout="scroll"
+                         styleClass="tabela-clientes">
 
-                <p:ajax event="rowEdit" listener="#{listagemBean.atualizarCliente}" update="@form"/>
+                <p:ajax event="rowEdit" listener="#{listagemBean.atualizarCliente}" update="@form messages"/>
                 <p:ajax event="rowEditCancel" listener="#{listagemBean.cancelarEdicao}" />
 
                 <p:column headerText="Nome" editor="true">
                     <p:cellEditor>
                         <f:facet name="output"><h:outputText value="#{cliente.nome}" /></f:facet>
-                        <f:facet name="input"><p:inputText value="#{cliente.nome}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{cliente.nome}" style="width:100%"/></f:facet>
                     </p:cellEditor>
                 </p:column>
 
                 <p:column headerText="Email" editor="true">
                     <p:cellEditor>
                         <f:facet name="output"><h:outputText value="#{cliente.email}" /></f:facet>
-                        <f:facet name="input"><p:inputText value="#{cliente.email}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{cliente.email}" style="width:100%"/></f:facet>
                     </p:cellEditor>
                 </p:column>
 
@@ -35,22 +45,23 @@
                     <h:outputText value="#{cliente.logradouros.size()}" />
                 </p:column>
 
-                <p:column headerText="Ações">
+                <p:column headerText="Ações" style="text-align:center;">
                     <p:rowEditor />
                     <p:commandButton icon="pi pi-trash"
                                      action="#{listagemBean.removerCliente(cliente.id)}"
-                                     update="tabelaClientes"
+                                     update="tabelaClientes messages"
                                      title="Excluir"
-                                     styleClass="ui-button-danger" />
+                                     styleClass="ui-button-danger"
+                                     style="margin-left:5px;"/>
                     <p:commandButton icon="pi pi-image"
                                      action="#{listagemBean.visualizarLogotipo(cliente.id)}"
-                                     ajax="false" title="Ver Logotipo" />
+                                     ajax="false"
+                                     title="Ver Logotipo"
+                                     style="margin-left:5px;"/>
                 </p:column>
             </p:dataTable>
 
-
         </p:panel>
-        </h:form>
-
-    </h:body>
+    </h:form>
+</h:body>
 </html>

@@ -5,21 +5,39 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Login</title>
+    <h:outputStylesheet name="styles.css"/>
 </h:head>
 <h:body>
+
     <h:form id="formLogin">
 
-        <p:panel header="Login">
-            <p:messages id="msgs" showDetail="true" closable="true"/>
+        <!-- Mensagens de feedback -->
+        <p:growl id="msgs" showDetail="true" life="5000"/>
 
-            <p:inputText id="username" value="#{loginBean.username}" placeholder="Usuário" required="true"/>
-            <br/><br/>
-            <p:password id="password" value="#{loginBean.password}" placeholder="Senha" required="true"/>
+        <p:panel header="Login" styleClass="login-panel">
+            <p:panelGrid columns="2" styleClass="grid">
+                <p:outputLabel for="username" value="Usuário:" />
+                <p:inputText id="username" value="#{loginBean.username}" required="true"
+                             placeholder="Digite seu usuário" style="width:100%">
+                    <p:ajax event="blur" update="msgs"/>
+                </p:inputText>
 
-            <br/><br/>
-            <p:commandButton value="Entrar" action="#{loginBean.login}" update="formLogin"/>
+                <p:outputLabel for="password" value="Senha:" />
+                <p:password id="password" value="#{loginBean.password}" required="true"
+                            placeholder="Digite sua senha" style="width:100%">
+                    <p:ajax event="blur" update="msgs"/>
+                </p:password>
+            </p:panelGrid>
+
+            <p:commandButton value="Entrar"
+                             action="#{loginBean.login}"
+                             update="formLogin msgs"
+                             icon="pi pi-sign-in"
+                             styleClass="login-button"/>
+
         </p:panel>
 
     </h:form>
+
 </h:body>
 </html>

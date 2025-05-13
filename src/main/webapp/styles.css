@@ -1,0 +1,78 @@
+/* ======= Estilos Globais ======= */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.p-panel {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+/* ======= Estilos para Botões ======= */
+.p-commandButton {
+    font-size: 16px;
+    padding: 10px 20px;
+    margin-top: 10px;
+}
+
+.ui-button-danger {
+    background-color: #d9534f;
+    border-color: #d43f3a;
+    color: white;
+}
+
+.ui-button-danger:hover {
+    background-color: #c9302c;
+}
+
+/* ======= Estilos para Inputs ======= */
+.p-inputtext, .p-password {
+    width: 100%;
+    padding: 8px;
+}
+
+/* ======= Estilos para Tabelas ======= */
+.tabela-clientes {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* ======= Estilos para Chips (endereços) ======= */
+.p-chip {
+    background-color: #007ad9;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+/* ======= Estilos para Formulário de Login ======= */
+.login-panel {
+    max-width: 400px;
+    margin: auto;
+    text-align: center;
+}
+
+/* ======= Estilos para Formulário de Cadastro de Cliente ======= */
+.cliente-form {
+    max-width: 600px;
+    margin: auto;
+}
+
+/* ======= Estilos para Listagem de Clientes ======= */
+.listagem-panel {
+    max-width: 800px;
+    margin: auto;
+}
+
+/* ======= Estilos para Index (Página Inicial) ======= */
+.index-panel {
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}

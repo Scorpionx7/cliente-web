@@ -4,34 +4,48 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Cadastro de Cliente</title>
+    <h:outputStylesheet name="styles.css"/>
 </h:head>
 <h:body>
     <h:form enctype="multipart/form-data">
 
-        <p:panel header="Cadastrar Cliente">
-            <p:messages showDetail="true" closable="true"/>
+        <p:growl id="messages" showDetail="true" life="5000"/>
 
-            <p:outputLabel for="nome" value="Nome:" />
-            <p:inputText id="nome" value="#{clienteBean.nome}" required="true"/>
+        <p:panel header="Cadastrar Cliente" style="padding:20px;">
 
-            <p:outputLabel for="email" value="E-mail:" />
-            <p:inputText id="email" value="#{clienteBean.email}" required="true"/>
+            <p:panelGrid columns="2" styleClass="grid">
+                <p:outputLabel for="nome" value="Nome:" />
+                <p:inputText id="nome" value="#{clienteBean.nome}" required="true" style="width:100%"/>
 
-            <p:outputLabel for="logotipo" value="Logotipo:" />
-            <p:fileUpload id="logotipo"
-                          value="#{clienteBean.logotipo}"
-                          mode="simple"
-                          required="true"/>
+                <p:outputLabel for="email" value="E-mail:" />
+                <p:inputText id="email" value="#{clienteBean.email}" required="true" style="width:100%"/>
 
-            <p:outputLabel for="novoEndereco" value="Novo Logradouro:" />
-            <p:inputText id="novoEndereco" value="#{clienteBean.novoEndereco}"/>
-            <p:commandButton value="Adicionar" action="#{clienteBean.adicionarLogradouro}" update="@form"/>
+                <p:outputLabel for="logotipo" value="Logotipo:" />
+                <p:fileUpload id="logotipo"
+                              value="#{clienteBean.logotipo}"
+                              mode="simple"
+                              required="true"/>
 
-            <p:dataList value="#{clienteBean.logradouros}" var="end" emptyMessage="Nenhum endereço adicionado.">
-                #{end}
+                <p:outputLabel for="novoEndereco" value="Novo Logradouro:" />
+                <p:inputText id="novoEndereco" value="#{clienteBean.novoEndereco}" style="width:100%"/>
+            </p:panelGrid>
+
+            <p:commandButton value="Adicionar Logradouro"
+                             action="#{clienteBean.adicionarLogradouro}"
+                             update="@form"
+                             icon="pi pi-plus"
+                             style="margin-top:10px;"/>
+
+            <p:dataList value="#{clienteBean.logradouros}" var="end" emptyMessage="Nenhum endereço adicionado." style="margin-top:10px;">
+                <p:chip label="#{end}" icon="pi pi-map-marker"/>
             </p:dataList>
 
-            <p:commandButton value="Salvar Cliente" action="#{clienteBean.salvar}" ajax="false"/>
+            <p:commandButton value="Salvar Cliente"
+                             action="#{clienteBean.salvar}"
+                             ajax="false"
+                             icon="pi pi-save"
+                             style="margin-top:20px; width:100%;"/>
+
         </p:panel>
 
     </h:form>

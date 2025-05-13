@@ -4,15 +4,22 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Sistema de Clientes</title>
+    <h:outputStylesheet name="styles.css"/>
 </h:head>
 <h:body>
 
-    <h1>Bem-vindo ao Sistema de Cadastro de Clientes</h1>
+    <h:form>
+        <p:growl id="messages" showDetail="true"/>
 
-    <p:panel header="Navegação">
-        <p:button value="Login" outcome="pages/login.xhtml" />
-        <p:button value="Cadastrar Cliente" outcome="pages/cliente.xhtml" />
-    </p:panel>
+        <p:panel header="Bem-vindo ao Sistema de Cadastro de Clientes" style="text-align:center; padding:20px;">
+            <h2>Gerencie seus clientes de forma rápida e eficiente</h2>
+        </p:panel>
+
+        <p:panel header="Navegação" style="margin-top:20px; text-align:center;">
+            <p:button value="Login" outcome="pages/login.xhtml" style="margin:10px;" icon="pi pi-sign-in"/>
+            <p:button value="Cadastrar Cliente" outcome="pages/cliente.xhtml" style="margin:10px;" icon="pi pi-user-plus"/>
+        </p:panel>
+    </h:form>
 
 </h:body>
 </html>
